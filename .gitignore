@@ -1,0 +1,37 @@
+# Virtual environment
+venv/
+env/
+ENV/
+qaenvtest/
+
+# Compiled files
+*.pyo
+*.pyd
+*.pyc
+config.py
+peopl.sql
+# Distribution / packaging
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Debug files
+*.bak
+*.swp
+*.DS_Store
+debug.log
+
+# IDE
+.idea/
+*.iml
+
+pytest_cache/
+
+assets/
+
+*geckodriver.
+pages/pytest_cache/
+
+screenshots
+*geckodriver.log
