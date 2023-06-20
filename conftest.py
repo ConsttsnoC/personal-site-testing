@@ -11,11 +11,13 @@ def browser(request):
     if request.param == "chrome":
         options = Options()
         options.add_argument("--incognito")
+        options.add_argument("--start-maximized")  # Add this line to maximize the window
         driver = webdriver.Chrome(options=options)
     elif request.param == "firefox":
         options = FirefoxOptions()
         options.add_argument("-private")
         driver = webdriver.Firefox(options=options)
+        driver.maximize_window()  # Add this line to maximize the window
     else:
         raise ValueError(f"Unsupported browser: {request.param}")
 

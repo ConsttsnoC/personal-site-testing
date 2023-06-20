@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+
 from pages.rezume_page import RezumePage
 
 def test_rezume(browser):

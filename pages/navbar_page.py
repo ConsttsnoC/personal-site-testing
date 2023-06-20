@@ -95,7 +95,6 @@ class NavBarPage(BasePage):
         self.browser.execute_script("window.scrollTo(0, 0)")  # Скроллинг вверх
         button = self.browser.find_element(*NavBar.PORTFOLIO_BUTTON_NAVBAR)
         button.click()
-        '''Проверка на работоспособность элемента Константин Гильманов в Navbar'''
         self.browser.execute_script("window.scrollTo(0, 0)")  # Скроллинг вверх
         wait = WebDriverWait(self.browser, 10)  # Инициализация объекта WebDriverWait
         button = wait.until(
