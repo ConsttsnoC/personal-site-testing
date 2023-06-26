@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from pages.github_page import GithubPage
 
 def test_github_page(browser):

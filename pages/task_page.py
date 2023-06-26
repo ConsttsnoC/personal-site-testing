@@ -2,7 +2,6 @@
 #2) start_task(Клин на кнопку "Начать" -> Заполнение формы регистрации-> Регистрация и Выход на основную страницу Task)
 #3) entrance (Нажатие кнопки "Войти" -> заполнение имени и пароля -> очищение полей -> запонение полей -> Вход на сайт)
 #4)
-import time
 
 from selenium.webdriver.common.by import By
 import random
@@ -12,6 +11,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 class TaskPage(BasePage):
+
     def test_open_task(self):
         '''Открытия Портфолио по клику кнопки в кнопки под аватаром и проверка на url'''
         button = self.browser.find_element(*ButtonsUnderAvatar.PORTFOLIO_AVATAR)

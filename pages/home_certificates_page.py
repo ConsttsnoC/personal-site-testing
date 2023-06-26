@@ -43,12 +43,12 @@ class HomeCertificates(BasePage):
         '''Проверка на отображение текста под сертификатами '''
         elements = self.browser.find_elements(By.XPATH, '//div[@class="text-center"]')
 
-
         # Проверка видимости каждого элемента и сохранение скриншота для видимых элементов
         screenshots = []
         for index, element in enumerate(elements):
             if element.is_displayed():
-                print(f"Текст сертификата {index + 1} отображается корректно.")
+                text = element.text
+                print(f"Текст сертификата {index + 1}: '{text}' отображается корректно.")
             else:
                 print(f"Текст сертификата {index + 1} не отображается корректно.")
 
@@ -58,5 +58,3 @@ class HomeCertificates(BasePage):
                 screenshots.append(screenshot_path)
 
         return screenshots
-
-

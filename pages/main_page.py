@@ -48,8 +48,7 @@ class MainPage(BasePage):
                 assert expected_url == new_url
                 print(f"Открыт правильный сайт. Ожидаемый URL: {expected_url}. Текущий URL: {new_url}.")
             except AssertionError:
-                error_message = f"Открыт неправильный сайт. Ожидаемый URL: {expected_url}. Текущий URL: {new_url}."
-                self.write_error(error_message)
+                print(f"Открыт неправильный сайт. Ожидаемый URL: {expected_url}. Текущий URL: {new_url}.")
 
             self.browser.back() #Возврат на предыдущую страницу
 

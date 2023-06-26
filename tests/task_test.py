@@ -1,7 +1,7 @@
 from pages.task_page import TaskPage
 
 
-def test_rezume(browser):
+def test_task(browser):
     link = "https://www.gilmanov.net/"
     page = TaskPage(browser, link)  # инициализируем Page Object с chrome_browser
     page.open()  # открываем страницу

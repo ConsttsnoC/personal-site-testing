@@ -8,10 +8,11 @@ from locators.locat import ButtonsUnderAvatar, NavBar
 from pages.base_page import BasePage
 
 
-class RezumePage(BasePage):
-    def test_ckick_button_rezume(self):
+class ResumePage(BasePage):
+
+    def test_ckick_button_resume(self):
         '''Проверка на наличие резюме после клика по кнопке под фотографией на главной странице'''
-        button_locator = ButtonsUnderAvatar.REZUME_AVATAR
+        button_locator = ButtonsUnderAvatar.RESUME_AVATAR
         button = self.browser.find_element(*button_locator)
         button.click()
         # Явное ожидание загрузки страницы
@@ -20,9 +21,9 @@ class RezumePage(BasePage):
         self.browser.back()
         self.browser.execute_script("window.scrollTo(0, 0)")  # Скроллинг вверх
 
-    def test_ckick_navbar_rezume(self):
+    def test_ckick_navbar_resume(self):
         '''Проверка на наличие резюме после клика по кнопке под фотографией на главной странице'''
-        button_locator = NavBar.REZUME_BUTTON_NAVBAR
+        button_locator = NavBar.RESUME_BUTTON_NAVBAR
         button = self.browser.find_element(*button_locator)
         button.click()
         # Явное ожидание загрузки страницы

@@ -1,6 +1,6 @@
 #Тест кейс: 1) Проверка работоспособности кнопки портфолио в Navbar ->
 #-> 2)Проверка работоспособности кнопки Резюме в Navbar и кнопки Главная ->
-#-> 3)Проверка иконок с сылками на контакты соцсетей с проверкой url
+#-> 3)Проверка иконок со cсылками на контакты соцсетей с проверкой url
 #-> 4) Проверка на работоспособность элемента Константин Гильманов в Navbar(переход на главную страницу)
 #-> 5) Проверка на работоспособность элемента ИКОНКИ рядом с Константин Гильманов в Navbar(переход на главную страницу)
 
@@ -24,10 +24,10 @@ class NavBarPage(BasePage):
         assert actual_url == expected_url, f"Открылся неправильный сайт. Ожидаемый URL: {expected_url}. Текущий URL: {actual_url}"
         self.browser.back()
 
-    def open_rezume_navbar(self):
+    def open_resume_navbar(self):
         '''Проверка кнопки Резюме в Navbar и кнопки Главная'''
         self.browser.execute_script("window.scrollTo(0, 0)")  # Скроллинг вверх
-        button = self.browser.find_element(*NavBar.REZUME_BUTTON_NAVBAR)
+        button = self.browser.find_element(*NavBar.RESUME_BUTTON_NAVBAR)
         button.click()
 
         # Явное ожидание загрузки страницы
@@ -41,7 +41,7 @@ class NavBarPage(BasePage):
         button.click()
 
     def test_button_navbar(self, button_xpath, expected_url):
-        '''Проверка иконок с ссылками на контакты соцсетей с проверкой URL'''
+        '''Проверка иконок со ссылками на контакты соцсетей с проверкой URL'''
         button = self.browser.find_element(By.XPATH, button_xpath)
         button.click()
 
@@ -90,7 +90,7 @@ class NavBarPage(BasePage):
         expected_url = 'https://t.me/constantasmr'
         self.test_button_navbar(button_xpath, expected_url)
 
-    def test_glav(self):
+    def test_home(self):
         '''Проверка на работоспособность элемента Константин Гильманов в Navbar(переход на главную страницу)'''
         self.browser.execute_script("window.scrollTo(0, 0)")  # Скроллинг вверх
         button = self.browser.find_element(*NavBar.PORTFOLIO_BUTTON_NAVBAR)
@@ -108,11 +108,10 @@ class NavBarPage(BasePage):
             assert expected_url == new_url
             print(f"Открыт правильный сайт. Ожидаемый URL: {expected_url}. Текущий URL: {new_url}.")
         except AssertionError:
-            error_message = f"Открыт неправильный сайт. Ожидаемый URL: {expected_url}. Текущий URL: {new_url}."
-            self.write_error(error_message)
+            print(f"Открыт неправильный сайт. Ожидаемый URL: {expected_url}. Текущий URL: {new_url}.")
         self.browser.back()  # Возврат на предыдущую страницу
 
-    def test_glav_icon(self):
+    def test_home_icon(self):
         '''Проверка на работоспособность элемента ИКОНКИ рядом с Константин Гильманов в Navbar(переход на главную страницу)'''
         self.browser.execute_script("window.scrollTo(0, 0)")  # Скроллинг вверх
         button = self.browser.find_element(*NavBar.PORTFOLIO_BUTTON_NAVBAR)

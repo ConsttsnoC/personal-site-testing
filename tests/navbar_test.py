@@ -5,12 +5,12 @@ def test_navbar_page(browser):
     page = NavBarPage(browser, link)  # инициализируем Page Object с chrome_browser
     page.open()  # открываем страницу
     page.open_portfolio_navbar()
-    page.open_rezume_navbar()
+    page.open_resume_navbar()
     page.test_buttons_navbar_github()
     page.test_buttons_navbar_instagram()
     page.test_buttons_navbar_vk()
     page.test_buttons_navbar_telegram()
-    page.test_glav()
-    page.test_glav_icon()
+    page.test_home()
+    page.test_home_icon()
 
 
