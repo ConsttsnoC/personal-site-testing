@@ -10,24 +10,26 @@ from pages.base_page import BasePage
 
 class ResumePage(BasePage):
 
-    def test_ckick_button_resume(self):
-        '''Проверка на наличие резюме после клика по кнопке под фотографией на главной странице'''
-        button_locator = ButtonsUnderAvatar.RESUME_AVATAR
-        button = self.browser.find_element(*button_locator)
+    def test_click_button_resume(self):
+        '''Проверка наличия резюме после клика по кнопке под фотографией на главной странице'''
+        button = self.browser.find_element(*ButtonsUnderAvatar.RESUME_AVATAR)
         button.click()
-        # Явное ожидание загрузки страницы
-        wait = WebDriverWait(self.browser, 10)
-        wait.until(EC.url_contains('.pdf'))  # Ожидаем, что URL содержит '/pdf'
-        self.browser.back()
-        self.browser.execute_script("window.scrollTo(0, 0)")  # Скроллинг вверх
 
-    def test_ckick_navbar_resume(self):
-        '''Проверка на наличие резюме после клика по кнопке под фотографией на главной странице'''
-        button_locator = NavBar.RESUME_BUTTON_NAVBAR
-        button = self.browser.find_element(*button_locator)
-        button.click()
         # Явное ожидание загрузки страницы
         wait = WebDriverWait(self.browser, 10)
         wait.until(EC.url_contains('.pdf'))  # Ожидаем, что URL содержит '/pdf'
+
+        self.browser.back()
+
+    def test_click_navbar_resume(self):
+        '''Проверка наличия резюме после клика по кнопке в навигационной панели'''
+        self.browser.execute_script("window.scrollTo(0, 0)")  # Скроллинг вверх
+        button = self.browser.find_element(*NavBar.RESUME_BUTTON_NAVBAR)
+        button.click()
+
+        # Явное ожидание загрузки страницы
+        wait = WebDriverWait(self.browser, 10)
+        wait.until(EC.url_contains('.pdf'))  # Ожидаем, что URL содержит '/pdf'
+
 
 
