@@ -5,7 +5,6 @@
 import os
 import time
 from selenium.webdriver.common.by import By
-
 from locators.locat import ButtonsUnderAvatar
 from pages.base_page import BasePage
 from selenium.webdriver.support.ui import WebDriverWait
@@ -15,12 +14,12 @@ class MainPage(BasePage):
 
     def open_portfolio(self):
         '''Нажатие на кнопку ПОРТФОЛИО под фотографией на главной странице'''
-        button = self.browser.find_element(*ButtonsUnderAvatar.PORTFOLIO_AVATAR)
+        wait = WebDriverWait(self.browser, 10)
+        button = wait.until(EC.element_to_be_clickable(ButtonsUnderAvatar.PORTFOLIO_AVATAR))
         button.click()
         # Прокручиваем страницу вниз
         self.browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         time.sleep(1)
-        # Находим кнопку по ссылке
 
     def test_buttons(self):
         '''Проверка кнопок "Посмотреть сайт" и "Посмотреть код на странице портфолио, проверка на ожидаемый переход URL"'''
@@ -40,7 +39,8 @@ class MainPage(BasePage):
             button.click()
 
             # Явное ожидание загрузки страницы
-            WebDriverWait(self.browser, 10).until(EC.url_contains(expected_url))
+            wait = WebDriverWait(self.browser, 10)
+            wait.until(EC.url_contains(expected_url))
 
             new_url = self.browser.current_url
 
@@ -50,20 +50,19 @@ class MainPage(BasePage):
             except AssertionError:
                 print(f"Открыт неправильный сайт. Ожидаемый URL: {expected_url}. Текущий URL: {new_url}.")
 
-            self.browser.back() #Возврат на предыдущую страницу
+            self.browser.back()  # Возврат на предыдущую страницу
 
     def check_visibility(self):
-        # Поиск всех элементов с указанным классом
+        '''Проверка видимости каждого элемента и сохранение скриншота для невидимых элементов'''
         elements = self.browser.find_elements(By.XPATH, '//img[@class="card-img-top"]')
 
-        # Проверка видимости каждого элемента и сохранение скриншота для невидимых элементов
         screenshots = []
+        wait = WebDriverWait(self.browser, 10)
         for index, element in enumerate(elements):
-            if element.is_displayed():
+            if wait.until(EC.visibility_of(element)):
                 print("Элемент картинки отображается корректно.")
             else:
                 print("Элемент картинки не отображается корректно.")
-                # Сохранение скриншота для невидимых элементов
                 screenshot_path = os.path.join("C:\\qatest\\screenshots", f"element_{index}.png")
                 element.screenshot(screenshot_path)
                 screenshots.append(screenshot_path)
