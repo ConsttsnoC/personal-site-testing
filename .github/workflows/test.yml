@@ -21,6 +21,5 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt  # Укажите ваш файл зависимостей
 
-    - name: Run a single test
-      run: python -m pytest /github/workspace/qatest/tests/task_test.py::test_name
-
+    - name: Run all tests
+      run: python -m pytest
