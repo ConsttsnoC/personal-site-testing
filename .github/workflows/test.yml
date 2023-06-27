@@ -1,17 +1,30 @@
-name: Тестирование веб-приложения
+name: Test
 
-on: [push]
+on:
+  push:
+    branches:
+      - main  # замените на вашу основную ветку
+  pull_request:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # используйте нужный вам образ ОС
 
     steps:
-    - name: Checkout репозитория
+    - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Установка зависимостей
-      run: npm install
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8  # замените на нужную вам версию Python
 
-    - name: Запуск тестов
-      run: npm test
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest selenium
+
+    - name: Run tests
+      run: |
+        python tests/resume_test.py --headless  # добавьте этот параметр для запуска в режиме без графического интерфейса
+
