@@ -26,5 +26,5 @@ jobs:
 
     - name: Run tests
       run: |
-        python tests/resume_test.py--headless  # добавьте этот параметр для запуска в режиме без графического интерфейса
+        python tests/resume_test.py --headless  # добавьте этот параметр для запуска в режиме без графического интерфейса
 
