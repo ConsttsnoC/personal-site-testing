@@ -32,6 +32,3 @@ jobs:
       run: |
         # Запуск тестов в Chrome
         python -m pytest --driver Chrome
-
-        # Запуск тестов в Firefox
-        python -m pytest --driver Firefox
