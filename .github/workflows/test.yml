@@ -13,22 +13,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Set up Python
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt  # Укажите ваш файл зависимостей
+      - name: Set up Python
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
-    - name: Install Chrome and Firefox
-      run: |
-        wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-        echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
-        sudo apt-get update && sudo apt-get install google-chrome-stable -y
-      
+      - name: Install Chrome
+        run: |
+          wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+          echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
+          sudo apt-get update && sudo apt-get install google-chrome-stable -y
+          sudo apt-get install -y chromium-chromedriver
 
-    - name: Run all tests
-      run: |
-        # Запуск тестов в Chrome
-        python -m pytest --driver Chrome
+      - name: Run tests in Chrome
+        run: |
+          python -m pytest --driver Chrome

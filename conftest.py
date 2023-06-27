@@ -9,8 +9,9 @@ from selenium.webdriver.firefox.options import Options as FirefoxOptions
 @pytest.fixture
 def browser():
     options = Options()
+    options.add_argument("--no-sandbox")
     options.add_argument("--incognito")
-    options.add_argument("--start-maximized")  # Add this line to maximize the window
+    options.add_argument("--start-maximized")
     driver = webdriver.Chrome(options=options)
 
     yield driver
