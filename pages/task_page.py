@@ -6,7 +6,7 @@
 from selenium.webdriver.common.by import By
 import random
 from pages.base_page import BasePage
-from locators.locat import ButtonsUnderAvatar, TaskTestCreate
+from locators.locat import ButtonsUnderAvatar, TaskTestCreate, RedirectButtons
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -16,9 +16,7 @@ class TaskPage(BasePage):
         '''Открытия Портфолио по клику кнопки в кнопки под аватаром и проверка на url'''
         button = self.browser.find_element(*ButtonsUnderAvatar.PORTFOLIO_AVATAR)
         button.click()
-        element = WebDriverWait(self.browser, 10).until(
-            EC.presence_of_element_located((By.XPATH, '//a[@href="https://taskksat.pythonanywhere.com/"]'))
-        )
+        element = WebDriverWait(self.browser, 10).until(EC.element_to_be_clickable(RedirectButtons.BUTTON_TASK))
         element.click()
         # Проверка перехода на нужный сайт
         if self.browser.current_url == 'https://taskksat.pythonanywhere.com/':

@@ -36,6 +36,13 @@ class TaskTestCreate:
     #кнопка "Начать" на главной "Task"
     BUTTON_BEGIN = (By.CSS_SELECTOR,'a.btn.btn-primary.btn-lg')
 
+#Переход в приложения со страницы портфолио
+class RedirectButtons:
+    #Кнопка для перехода в приложение агрегатора паролей
+    BUTTON_TASK = (By.XPATH, '//a[@href="https://taskksat.pythonanywhere.com/"]')
+    #Кнопка для перехода в приложение Задачи
+    PASSWORD_BUTTON = (By.CSS_SELECTOR, 'a.btn.btn-secondary[href="https://www.gilmanov.net/parol/"]')
+
 
 
 

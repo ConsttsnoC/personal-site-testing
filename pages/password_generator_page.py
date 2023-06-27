@@ -8,7 +8,7 @@
 
 import random
 from selenium.webdriver.support.ui import Select
-from locators.locat import ButtonsUnderAvatar
+from locators.locat import ButtonsUnderAvatar, RedirectButtons
 from pages.base_page import BasePage
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -18,25 +18,23 @@ from selenium.webdriver.support import expected_conditions as EC
 class PasswordGeneratorPage(BasePage):
 
     def go_to_site(self):
-        '''Переход на страницу Портфолио по кнопке под аватаркой на главной странице
-        Переход на страницу сайта с Генерацией Паролей'''
-        button_locator = ButtonsUnderAvatar.PORTFOLIO_AVATAR
-        button = self.browser.find_element(*button_locator)
-        button.click()
-
-        button = self.browser.find_element(By.CSS_SELECTOR,'a.btn.btn-secondary[href="https://www.gilmanov.net/parol/"]')
-        button.click()
-        new_url = self.browser.current_url
         expected_url = 'https://www.gilmanov.net/parol/'
 
-        try:
-            assert expected_url == new_url
+
+        button = self.browser.find_element(*ButtonsUnderAvatar.PORTFOLIO_AVATAR)
+        button.click()
+
+        button = self.browser.find_element(*RedirectButtons.PASSWORD_BUTTON)
+        button.click()
+
+        new_url = self.browser.current_url
+
+        if expected_url == new_url:
             print(f"Открыт правильный сайт. Ожидаемый URL: {expected_url}. Текущий URL: {new_url}.")
-        except AssertionError:
+        else:
             print(f"Открыт неправильный сайт. Ожидаемый URL: {expected_url}. Текущий URL: {new_url}.")
 
     def test_site_password(self):
-        '''Генерация пароля и проверка на отображения текста об успешности'''
         button = self.browser.find_element(By.CSS_SELECTOR,'input[type="submit"][value="Сгенерировать пароль"].btn.btn-primary')
         button.click()
         expected_text = "Ваш персональный пароль:"
@@ -46,10 +44,13 @@ class PasswordGeneratorPage(BasePage):
             print("Текст успешно отображается на странице")
         else:
             print("Текст не найден на странице")
+
         self.browser.back()
 
     def test_site_password_has_letters(self):
-        '''Меняем длину и по очереди проверяет чекбоксы и генерируем пароли и выход назад'''
+        '''
+        Меняем длину и по очереди проверяет чекбоксы и генерируем пароли и выход назад
+        '''
         self.browser.refresh()
         # Случайно выбираем длину пароля от 6 до 14
         password_length = random.randint(6, 14)
@@ -58,20 +59,23 @@ class PasswordGeneratorPage(BasePage):
         select_element = wait.until(EC.presence_of_element_located((By.NAME, 'length')))
         select = Select(select_element)
         select.select_by_value(str(password_length))
+
         option1 = self.browser.find_element(By.CSS_SELECTOR, "[name='Верхний регист']")
         option1.click()
+
         button = self.browser.find_element(By.CSS_SELECTOR,
                                            'input[type="submit"][value="Сгенерировать пароль"].btn.btn-primary')
         button.click()
+
         password_element = self.browser.find_element(By.CSS_SELECTOR, 'h2.alert.alert-primary[role="alert"]')
         password = password_element.text
         has_letters = any(char.isalpha() for char in password)
         screenshots = []
+
         if has_letters:
             print("Пароль содержит Верхний регист")
         else:
             print("Пароль не соответствует требованиям 'Верхний регист'")
-
             # Сохранение скриншота для видимых элементов
             screenshot_path = "C:\\qatest\\screenshots\\1.png"
             self.browser.save_screenshot(screenshot_path)
@@ -89,20 +93,23 @@ class PasswordGeneratorPage(BasePage):
         select_element = wait.until(EC.presence_of_element_located((By.NAME, 'length')))
         select = Select(select_element)
         select.select_by_value(str(password_length))
+
         option2 = self.browser.find_element(By.CSS_SELECTOR, "[name='Цифры']")
         option2.click()
+
         button = self.browser.find_element(By.CSS_SELECTOR,
                                            'input[type="submit"][value="Сгенерировать пароль"].btn.btn-primary')
         button.click()
+
         password_element = self.browser.find_element(By.CSS_SELECTOR, 'h2.alert.alert-primary[role="alert"]')
         password = password_element.text
         has_digits = any(char.isdigit() for char in password)
         screenshots = []
+
         if has_digits:
             print("Пароль содержит Цифры")
         else:
             print("Пароль не соответствует требованиям 'Цифры'")
-
             # Сохранение скриншота для видимых элементов
             screenshot_path = "C:\\qatest\\screenshots\\2.png"
             self.browser.save_screenshot(screenshot_path)
@@ -143,7 +150,7 @@ class PasswordGeneratorPage(BasePage):
         return screenshots
 
     def creation_of_a_new(self):
-        '''Генерация пароля, создания нового пароля, проверка на создание нового пароля, тест работы кнопки "Назад"'''
+        '''Генерация пароля, создание нового пароля, проверка на создание нового пароля, тест работы кнопки "Назад"'''
         self.browser.refresh()
 
         # Нажать на кнопку "Сгенерировать пароль"
@@ -175,12 +182,14 @@ class PasswordGeneratorPage(BasePage):
         # Нажатие на кнопку "Назад"
         button = self.browser.find_element(By.CSS_SELECTOR, 'input[type="submit"][value="Назад"].btn.btn-primary')
         button.click()
+
         # Проверка изменения текущей ссылки
         expected_url = 'https://www.gilmanov.net/parol/?'
         if self.browser.current_url == expected_url:
             print("Текущая ссылка успешно сменилась на", expected_url)
         else:
             print("Ошибка: Текущая ссылка не изменилась или не соответствует ожидаемой ссылке", expected_url)
+
 
 
 
