@@ -21,5 +21,17 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt  # Укажите ваш файл зависимостей
 
+    - name: Install Chrome and Firefox
+      run: |
+        wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+        echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
+        sudo apt-get update && sudo apt-get install google-chrome-stable -y
+        sudo apt-get install firefox -y
+
     - name: Run all tests
-      run: python -m pytest
+      run: |
+        # Запуск тестов в Chrome
+        python -m pytest --driver Chrome
+
+        # Запуск тестов в Firefox
+        python -m pytest --driver Firefox
