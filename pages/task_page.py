@@ -227,9 +227,9 @@ class TaskPage(BasePage):
         link.click()
 
         if self.browser.current_url == 'https://taskksat.pythonanywhere.com/completet/':
-            print(Fore.GREEN + 'переход по кнопке ВЫПОЛНЕННЫЕ в шапке выполнен успешно.')
+            print(Fore.GREEN + 'переход по кнопке ВЫПОЛНЕННЫЕ в шапке выполнен успешно')
         else:
-            print(Fore.RED + 'переход по кнопке ВЫПОЛНЕННЫЕ в шапке НЕ выполнено.')
+            print(Fore.RED + 'переход по кнопке ВЫПОЛНЕННЫЕ в шапке НЕ выполнено')
 
 
 
