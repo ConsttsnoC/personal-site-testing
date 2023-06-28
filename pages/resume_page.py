@@ -12,7 +12,6 @@ from pages.base_page import BasePage
 
 
 class ResumePage(BasePage):
-    @pytest.mark.skip(reason="Тест не нужно выполнять")
     def test_click_button_resume(self):
         '''Проверка на наличие резюме после клика по кнопке под фотографией на главной странице'''
         button_locator = ButtonsUnderAvatar.RESUME_AVATAR
@@ -24,9 +23,7 @@ class ResumePage(BasePage):
         wait.until(EC.url_contains('.pdf'))  # Ожидаем, что URL содержит '/pdf'
         self.browser.back()
 
-    @pytest.mark.skip(reason="Тест не нужно выполнять")
     def test_click_navbar_resume(self):
-
         '''Проверка на наличие резюме после клика по кнопке под фотографией на главной странице'''
         self.browser.execute_script("window.scrollTo(0, 0)")  # Скроллинг вверх
         button_locator = NavBar.RESUME_BUTTON_NAVBAR

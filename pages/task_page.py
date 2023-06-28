@@ -116,7 +116,7 @@ class TaskPage(BasePage):
         else:
             print(Fore.RED + 'Вход на сайт не выполнен.')
 
-    @pytest.mark.skip(reason="Тест не нужно выполнять")
+
     def creating_a_task(self):
         # Ожидание появления элемента
         wait = WebDriverWait(self.browser, 10)
@@ -161,7 +161,7 @@ class TaskPage(BasePage):
         else:
             print(Fore.RED + 'Задание не удалено.')
 
-    @pytest.mark.skip(reason="Тест не нужно выполнять")
+
     def test_navbar_task(self):
         '''тестирование кнопок navbar'''
         # нажатие кнопки "TASK"
