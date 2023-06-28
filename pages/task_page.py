@@ -118,10 +118,8 @@ class TaskPage(BasePage):
     def creating_a_task(self):
         # Ожидание появления элемента
         wait = WebDriverWait(self.browser, 10)
-        link_element = wait.until(EC.element_to_be_clickable((By.XPATH, "//a[contains(@class, 'btn btn-primary')]")))
-
-        # Нажатие на элемент
-        link_element.click()
+        element = wait.until(EC.element_to_be_clickable((By.LINK_TEXT, "Создать")))
+        element.click()
         wait.until(EC.url_to_be('https://taskksat.pythonanywhere.com/create/'))
 
         input_element = wait.until(EC.element_to_be_clickable((By.ID, "title")))
