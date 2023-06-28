@@ -5,6 +5,7 @@
 #-> 4)Проверка на работоспособность элемента Константин Гильманов в Navbar(переход на главную страницу)
 # возврат на страницу портфолио
 #-> 5)Проверка на работоспособность элемента ИКОНКИ рядом с Константин Гильманов в Navbar(переход на главную страницу)
+import time
 
 from selenium.webdriver.common.by import By
 from locators.locat import NavBar
@@ -15,20 +16,11 @@ from selenium.webdriver.support import expected_conditions as EC
 
 class NavBarPage(BasePage):
 
-    def open_resume_navbar(self):
+    def open_home_navbar(self):
         '''Проверка кнопки Резюме в Navbar и кнопки Главная'''
         self.browser.execute_script("window.scrollTo(0, 0)")  # Скроллинг вверх
-
-        # Проерка кнопки "Резюме"
-        resume_button = self.browser.find_element(*NavBar.RESUME_BUTTON_NAVBAR)
-        resume_button.click()
-
-        # Явное ожидание загрузки страницы
-        wait = WebDriverWait(self.browser, 10)
-        self.browser.back()
-        self.browser.execute_script("window.scrollTo(0, 0)")  # Скроллинг вверх
-
         # Проверка кнопки "Главная"
+        wait = WebDriverWait(self.browser, 10)
         home_button = self.browser.find_element(*NavBar.HOME_BUTTON_NAVBAR)
         home_button.click()
         expected_url = 'https://www.gilmanov.net/'  # Ожидаемый URL портфолио

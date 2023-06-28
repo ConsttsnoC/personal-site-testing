@@ -4,7 +4,7 @@ def test_navbar_page(browser):
     link = "https://www.gilmanov.net/"
     page = NavBarPage(browser, link)  # инициализируем Page Object с chrome_browser
     page.open()  # открываем страницу
-    page.open_resume_navbar()
+    page.open_home_navbar()
     page.test_buttons_navbar_github()
     page.test_buttons_navbar_instagram()
     page.test_buttons_navbar_vk()
