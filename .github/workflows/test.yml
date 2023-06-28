@@ -26,6 +26,5 @@ jobs:
 
     - name: Run tests
       run: |
-        pytest -s --headless --window-size=1920,1080
-      
+        pytest -s
 
