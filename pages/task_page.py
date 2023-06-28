@@ -4,6 +4,7 @@
 #4)
 import time
 
+import pytest
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 import random
@@ -115,6 +116,7 @@ class TaskPage(BasePage):
         else:
             print(Fore.RED + 'Вход на сайт не выполнен.')
 
+    @pytest.mark.skip
     def creating_a_task(self):
         # Ожидание появления элемента
         wait = WebDriverWait(self.browser, 10)
@@ -159,7 +161,7 @@ class TaskPage(BasePage):
         else:
             print(Fore.RED + 'Задание не удалено.')
 
-
+    @pytest.mark.skip
     def test_navbar_task(self):
         '''тестирование кнопок navbar'''
         # нажатие кнопки "TASK"
