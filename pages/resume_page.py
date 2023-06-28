@@ -15,8 +15,7 @@ class ResumePage(BasePage):
         button = self.browser.find_element(*ButtonsUnderAvatar.RESUME_AVATAR)
         button.click()
 
-        # Явное ожидание загрузки страницы
-        wait = WebDriverWait(self.browser, 10)
+
 
 
         self.browser.back()
@@ -27,8 +26,7 @@ class ResumePage(BasePage):
         button = self.browser.find_element(*NavBar.RESUME_BUTTON_NAVBAR)
         button.click()
 
-        # Явное ожидание загрузки страницы
-        wait = WebDriverWait(self.browser, 10)
+
 
 
 
