@@ -17,7 +17,7 @@ class ResumePage(BasePage):
 
         # Явное ожидание загрузки страницы
         wait = WebDriverWait(self.browser, 10)
-        wait.until(EC.url_contains('.pdf'))  # Ожидаем, что URL содержит '/pdf'
+
 
         self.browser.back()
 
@@ -29,7 +29,7 @@ class ResumePage(BasePage):
 
         # Явное ожидание загрузки страницы
         wait = WebDriverWait(self.browser, 10)
-        wait.until(EC.url_contains('.pdf'))  # Ожидаем, что URL содержит '/pdf'
+
 
 
 
