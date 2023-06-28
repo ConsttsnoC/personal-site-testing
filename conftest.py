@@ -12,10 +12,12 @@ def browser(request):
         options = Options()
         options.add_argument("--incognito")
         options.add_argument("--start-maximized")  # Add this line to maximize the window
+        options.add_argument("--headless")  # Add this line to run in headless mode
         driver = webdriver.Chrome(options=options)
     elif request.param == "firefox":
         options = FirefoxOptions()
         options.add_argument("-private")
+        options.add_argument("-headless")  # Add this line to run in headless mode
         driver = webdriver.Firefox(options=options)
         driver.maximize_window()  # Add this line to maximize the window
     else:
