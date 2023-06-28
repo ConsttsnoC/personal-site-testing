@@ -114,11 +114,12 @@ class TaskPage(BasePage):
             print(Fore.RED + 'Вход на сайт не выполнен.')
 
     def creating_a_task(self):
-        self.browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        link_element = self.browser.find_element(By.XPATH, "//a[contains(@class, 'btn-primary')]")
-        link_element.click()
-
+        # Ожидание появления элемента
         wait = WebDriverWait(self.browser, 10)
+        link_element = wait.until(EC.element_to_be_clickable((By.XPATH, "//a[contains(@class, 'btn btn-primary')]")))
+
+        # Нажатие на элемент
+        link_element.click()
         wait.until(EC.url_to_be('https://taskksat.pythonanywhere.com/create/'))
 
         input_element = wait.until(EC.element_to_be_clickable((By.ID, "title")))
@@ -135,6 +136,7 @@ class TaskPage(BasePage):
         else:
             print(Fore.RED + 'сохранение не выполнено.')
 
+
         # Нажатие на кнопку с атрибутом "aria-label" равным "Выполнение задачи" и значением "✓"
         buttons = self.browser.find_elements(By.XPATH,
                                              "//button[contains(@aria-label, 'Выполнение задачи') and contains(text(), '✓')]")
@@ -150,6 +152,7 @@ class TaskPage(BasePage):
         button = self.browser.find_element(By.XPATH, "//button[@class='btn btn-danger' and text()='Удалить']")
         self.browser.execute_script("arguments[0].click();", button)
 
+
         if self.browser.current_url == 'https://taskksat.pythonanywhere.com/completet/':
             print(Fore.GREEN + 'Задание удалено.')
         else:
@@ -159,6 +162,12 @@ class TaskPage(BasePage):
     def test_navbar_task(self):
         '''тестирование кнопкок navbar'''
         # нажатие на кнопку "создать" в NavBar
+        # Ожидание появления элемента
+        wait = WebDriverWait(self.browser, 10)
+        span_element = wait.until(EC.element_to_be_clickable((By.XPATH, "//span[@class='navbar-toggler-icon']")))
+
+        # Нажатие на элемент
+        span_element.click()
         self.browser.execute_script("window.scrollTo(0, 0)")  # Скроллинг вверх
         wait = WebDriverWait(self.browser, 10)
         link_element = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'a.nav-link[href="/create/"]')))
@@ -181,6 +190,12 @@ class TaskPage(BasePage):
             print(Fore.RED + 'переход по кнопке TASK в шапке НЕ выполнено.')
 
         # нажатие на кнопку "Текущие"
+        # Ожидание появления элемента
+        wait = WebDriverWait(self.browser, 10)
+        span_element = wait.until(EC.element_to_be_clickable((By.XPATH, "//span[@class='navbar-toggler-icon']")))
+
+        # Нажатие на элемент
+        span_element.click()
         self.browser.execute_script("window.scrollTo(0, 0)")  # Скроллинг вверх
         wait = WebDriverWait(self.browser, 10)
         link = wait.until(EC.element_to_be_clickable((By.XPATH, '//a[@class="nav-link active" and text()="Текущие"]')))
@@ -192,6 +207,12 @@ class TaskPage(BasePage):
             print(Fore.RED + 'переход по кнопке ТЕКУЩИЕ в шапке не выполнено.')
 
         # нажатие на кнопку Выполненные
+        # Ожидание появления элемента
+        wait = WebDriverWait(self.browser, 10)
+        span_element = wait.until(EC.element_to_be_clickable((By.XPATH, "//span[@class='navbar-toggler-icon']")))
+
+        # Нажатие на элемент
+        span_element.click()
         self.browser.execute_script("window.scrollTo(0, 0)")  # Скроллинг вверх
         wait = WebDriverWait(self.browser, 10)
         link = wait.until(EC.element_to_be_clickable((By.XPATH, '//a[@class="nav-link" and text()="Выполненные"]')))
