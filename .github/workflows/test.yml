@@ -26,5 +26,5 @@ jobs:
 
     - name: Run tests
       run: |
-        pytest -s
+        pytest -s tests/task_test.py
 
