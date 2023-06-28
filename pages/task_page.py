@@ -147,11 +147,8 @@ class TaskPage(BasePage):
                                            "//button[contains(@class, 'btn btn-primary') and contains(text(), '✎')]")
         button.click()
 
-
         button = self.browser.find_element(By.XPATH, "//button[@class='btn btn-danger' and text()='Удалить']")
-        button.click()
-
-
+        self.browser.execute_script("arguments[0].click();", button)
 
         if self.browser.current_url == 'https://taskksat.pythonanywhere.com/completet/':
             print(Fore.GREEN + 'Задание удалено.')
