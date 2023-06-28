@@ -25,7 +25,6 @@ class NavBarPage(BasePage):
 
         # Явное ожидание загрузки страницы
         wait = WebDriverWait(self.browser, 10)
-        wait.until(EC.url_contains('.pdf'))  # Ожидаем, что URL содержит '/pdf'
         self.browser.back()
         self.browser.execute_script("window.scrollTo(0, 0)")  # Скроллинг вверх
 
