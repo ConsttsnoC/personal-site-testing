@@ -7,3 +7,5 @@ def test_task(browser):
     page.open()  # открываем страницу
     page.start_task()
     page.entrance()
+    #page.creating_a_task()
+    #page.test_navbar_task() #тестирование кнопок навбар
