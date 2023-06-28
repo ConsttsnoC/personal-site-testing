@@ -26,4 +26,4 @@
 </div>
 
 Добавленно автоматичесий запуск тестов в GitHub Action при каждом push
-<img src="file:///C:\qatest\image\12.png" alt="Моя картинка">
+![Моя картинка](https://github.com/ConsttsnoC/personal-site-testing/raw/f233f313dccbd3e733d079c704fb7a6f1e92188f/image/12.png)
