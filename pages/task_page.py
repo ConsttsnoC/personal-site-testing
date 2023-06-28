@@ -117,18 +117,17 @@ class TaskPage(BasePage):
         self.browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         link_element = self.browser.find_element(By.XPATH, "//a[contains(@class, 'btn-primary')]")
         link_element.click()
-        if self.browser.current_url == 'https://taskksat.pythonanywhere.com/create/':
-            print(Fore.GREEN + 'переход на создание выполнен успешно.')
-        else:
-            print(Fore.RED + 'переход на создание не выполнен.')
 
-        input_element = self.browser.find_element(By.ID, "title")
+        wait = WebDriverWait(self.browser, 10)
+        wait.until(EC.url_to_be('https://taskksat.pythonanywhere.com/create/'))
+
+        input_element = wait.until(EC.element_to_be_clickable((By.ID, "title")))
         input_element.send_keys('Первое название')
-        input_element = self.browser.find_element(By.ID, "memo")
+        input_element = wait.until(EC.element_to_be_clickable((By.ID, "memo")))
         input_element.send_keys('Первое описание')
-        checkbox = self.browser.find_element(By.ID, 'important')
+        checkbox = wait.until(EC.element_to_be_clickable((By.ID, 'important')))
         checkbox.click()
-        elements = self.browser.find_element(By.CSS_SELECTOR, '.btn.btn-primary')
+        elements = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.btn.btn-primary')))
         elements.click()
 
         if self.browser.current_url == 'https://taskksat.pythonanywhere.com/current/':
@@ -143,18 +142,21 @@ class TaskPage(BasePage):
             buttons[-1].click()
             print(Fore.GREEN + "Задание выполнено.")
 
-        #переход к редактированию задания
+        # Переход к редактированию задания
         button = self.browser.find_element(By.XPATH,
                                            "//button[contains(@class, 'btn btn-primary') and contains(text(), '✎')]")
         button.click()
-        #удаление выполненого задания
-        button = self.browser.find_element(By.XPATH,
-                                           "//button[contains(@class, 'btn btn-danger') and contains(text(), 'Удалить')]")
+
+
+        button = self.browser.find_element(By.XPATH, "//button[@class='btn btn-danger' and text()='Удалить']")
         button.click()
+
+
+
         if self.browser.current_url == 'https://taskksat.pythonanywhere.com/completet/':
-            print(Fore.GREEN + 'Задание удаленно.')
+            print(Fore.GREEN + 'Задание удалено.')
         else:
-            print(Fore.RED + 'Задание не удаленно.')
+            print(Fore.RED + 'Задание не удалено.')
 
 
     def test_navbar_task(self):
