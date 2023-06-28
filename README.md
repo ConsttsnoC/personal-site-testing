@@ -26,4 +26,4 @@
 </div>
 
 Добавленно автоматичесий запуск тестов в GitHub Action при каждом push
-![](../Users/Acer/Desktop/12.png)
+<img src="file:///C://Users/Acer/Desktop/12.png" alt="Моя картинка">
