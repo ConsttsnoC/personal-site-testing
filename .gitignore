@@ -10,6 +10,8 @@ qaenvtest/
 *.pyc
 config.py
 peopl.sql
+bash.exe.stackdump
+.gitlab-ci.yml
 # Distribution / packaging
 *.egg-info/
 dist/
